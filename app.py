@@ -14,22 +14,22 @@ import pickle
 app = Flask(__name__)
 model=pickle.load(open('prediction.pkl','rb'))
 
-ENV = 'dev'
+#ENV = 'dev'
 
-if ENV == 'dev':
-    app.debug=True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:1234@localhost/diabetes'
-else:
-    app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+#if ENV == 'dev':
+ #   app.debug=True
+  #  app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:1234@localhost/diabetes'
+#else:
+ #   app.debug = False
+  #  app.config['SQLALCHEMY_DATABASE_URI'] = ''
     
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] =  False
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] =  False
 
-db = SQLAlchemy(app)
+#db = SQLAlchemy(app)
 
-class predictor(db.Model):
-    __tablename = 'predictor'
-    Pregnancies = db.Column(db.Integer)
+#class predictor(db.Model):
+ #   __tablename = 'predictor'
+  """  Pregnancies = db.Column(db.Integer)
     Glucose = db.Column(db.Integer,primary_key=True)
     BloodPressure = db.Column(db.Integer)
     SkinThickness = db.Column(db.Integer)
@@ -49,7 +49,7 @@ class predictor(db.Model):
         self.Age= Age
     
 
-        
+     """   
         
 @app.route('/')
 def home():
@@ -68,7 +68,7 @@ def predict():
     int_features = [int(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction=model.predict(final_features)
-    if request.method=='POST':
+    """"if request.method=='POST':
         Pregnancies = request.form['Pregnancies']
         Glucose = request.form['Glucose']
         BloodPressure = request.form['BloodPressure']
@@ -80,7 +80,7 @@ def predict():
     if db.session.query(predictor).filter(predictor.Glucose>=0):
         data = predictor( Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age)
         db.session.add(data)
-        db.session.commit()
+        db.session.commit()"""
     
     output = prediction[0]
     if(output==1):
