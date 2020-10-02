@@ -1,0 +1,20 @@
+<head>
+<body>
+
+<form action="{{url_for('predict')}}" method="POST"><br><br>
+<center><input type="text" name="Pregnancies" placeholder="Pregnancies" required="required"/></center><br>
+<center><input type="text" name="Glucose" placeholder="Glucose" required="required"/></center><br>
+<center><input type="text" name="BloodPressure" placeholder="BloodPressure" required="required"/></center><br>
+<center><input type="text" name="SkinThickness" placeholder="SkinThickness" required="required"/></center><br>
+<center><input type="text" name="Insulin" placeholder="Insulin" required="required"/></center><br>
+<center><input type="text" name="BMI" placeholder="BMI" required="required"/></center><br>
+<center><input type="text" name="DiabetesPedigreeFunction" placeholder="DiabetesPedigreeFunction" required="required"/></center><br>
+<center><input type="text" name="Age" placeholder="Age" required="required"/></center><br>
+<center><button type="submit">predict</button></center><br>
+</form>
+
+<br>
+<br>
+<center>{{prediction_text}}</center>
+
+</head>
